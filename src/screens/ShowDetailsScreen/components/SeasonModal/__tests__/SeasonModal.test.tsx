@@ -21,6 +21,6 @@ describe('SeasonModal', () => {
       modalizeRef.current?.open();
     });
 
-    expect(getAllByText('Season', {exact: false}).length).toEqual(3);
+    expect(getAllByText(/season/i).length).toBe(3);
   });
 });
