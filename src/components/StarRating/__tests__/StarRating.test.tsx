@@ -5,6 +5,7 @@ import {StarRating} from '../StarRating';
 
 describe('StarRating', () => {
   test('the component rendered', () => {
-    render(<StarRating rating={{average: 7}} />);
+    const {debug} = render(<StarRating rating={{average: 7}} />);
+    debug();
   });
 });
