@@ -25,12 +25,12 @@ describe('EpisodeList', () => {
         2: [mocks.episode22, mocks.episode23],
       },
     });
-    const {getByText, findByText} = render(<EpisodeList show={mocks.show} />, {
+    const {findByText} = render(<EpisodeList show={mocks.show} />, {
       wrapper,
     });
 
-    await findByText(mocks.episode1.name);
+    const episode1 = await findByText(mocks.episode1.name);
 
-    expect(getByText(mocks.episode1.name)).toBeTruthy();
+    expect(episode1).toBeTruthy();
   });
 });
