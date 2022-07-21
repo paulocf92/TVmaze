@@ -5,7 +5,13 @@ import {EpisodeList} from '../EpisodeList';
 import {mocks} from './mocks';
 import {showService} from '../../../../../services/show/showService';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: Infinity,
+    },
+  },
+});
 const wrapper = ({children}: {children: React.ReactNode}) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
