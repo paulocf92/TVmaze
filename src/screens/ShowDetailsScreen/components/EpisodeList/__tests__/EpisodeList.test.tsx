@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, waitFor} from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {EpisodeList} from '../EpisodeList';
 import {mocks} from './mocks';
@@ -25,11 +25,11 @@ describe('EpisodeList', () => {
         2: [mocks.episode22, mocks.episode23],
       },
     });
-    const {getByText} = render(<EpisodeList show={mocks.show} />, {wrapper});
-
-    await waitFor(() => {
-      getByText(mocks.episode1.name);
+    const {getByText, findByText} = render(<EpisodeList show={mocks.show} />, {
+      wrapper,
     });
+
+    await findByText(mocks.episode1.name);
 
     expect(getByText(mocks.episode1.name)).toBeTruthy();
   });
