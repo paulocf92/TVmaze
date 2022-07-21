@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import {render, waitFor} from '@testing-library/react-native';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {EpisodeList} from '../EpisodeList';
 import {mocks} from './mocks';
@@ -17,15 +17,20 @@ const wrapper = ({children}: {children: React.ReactNode}) => (
 );
 
 describe('EpisodeList', () => {
-  test('the component rendered', () => {
+  test('show all season one episodes first', async () => {
     jest.spyOn(showService, 'getEpisodes').mockResolvedValueOnce({
-      seasonNames: [],
+      seasonNames: ['1', '2'],
       seasons: {
-        1: [],
+        1: [mocks.episode1, mocks.episode2],
+        2: [mocks.episode22, mocks.episode23],
       },
     });
-    render(<EpisodeList show={mocks.show} />, {wrapper});
+    const {getByText} = render(<EpisodeList show={mocks.show} />, {wrapper});
 
-    expect(true).toBeTruthy();
+    await waitFor(() => {
+      getByText(mocks.episode1.name);
+    });
+
+    expect(getByText(mocks.episode1.name)).toBeTruthy();
   });
 });
