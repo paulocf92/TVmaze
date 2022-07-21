@@ -6,5 +6,7 @@ import {mocks} from './mocks';
 describe('EpisodeList', () => {
   test('the component rendered', () => {
     render(<EpisodeList show={mocks.show} />);
+
+    expect(true).toBeTruthy();
   });
 });
