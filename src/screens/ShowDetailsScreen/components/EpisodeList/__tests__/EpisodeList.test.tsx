@@ -29,10 +29,9 @@ describe('EpisodeList', () => {
       wrapper,
     });
 
-    const episode1 = await findByText(mocks.episode1.name);
-    const episode2 = getByText(mocks.episode2.name);
+    await findByText(mocks.episode1.name);
 
-    expect(episode1).toBeTruthy();
-    expect(episode2).toBeTruthy();
+    expect(getByText(mocks.episode1.name)).toBeTruthy();
+    expect(getByText(mocks.episode2.name)).toBeTruthy();
   });
 });
