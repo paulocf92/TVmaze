@@ -19,7 +19,7 @@ describe('StarRating', () => {
 
   describe('rating was NOT passed', () => {
     it('show nothing', () => {
-      const {container} = render(<StarRating />);
+      const {container} = render(<StarRating />, {wrapper: undefined});
 
       expect(container.children).toEqual([]);
     });
