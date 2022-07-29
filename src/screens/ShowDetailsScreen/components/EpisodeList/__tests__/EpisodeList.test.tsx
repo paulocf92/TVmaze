@@ -1,20 +1,8 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
-import {QueryClient, QueryClientProvider} from 'react-query';
 import {EpisodeList} from '../EpisodeList';
 import {mocks} from './mocks';
 import {showService} from '../../../../../services/show/showService';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: Infinity,
-    },
-  },
-});
-const wrapper = ({children}: {children: React.ReactNode}) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
+import {render} from 'test-utils';
 
 describe('EpisodeList', () => {
   test('show all season one episodes first', async () => {
@@ -25,9 +13,7 @@ describe('EpisodeList', () => {
         2: [mocks.episode22, mocks.episode23],
       },
     });
-    const {findByText, getByText} = render(<EpisodeList show={mocks.show} />, {
-      wrapper,
-    });
+    const {findByText, getByText} = render(<EpisodeList show={mocks.show} />);
 
     await findByText(mocks.episode1.name);
 
